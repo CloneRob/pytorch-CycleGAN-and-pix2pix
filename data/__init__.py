@@ -1,5 +1,6 @@
 import torch.utils.data
 from data.base_data_loader import BaseDataLoader
+from data.custom_data import Cityscapes, ADE20K
 
 
 def CreateDataLoader(opt):
@@ -20,6 +21,10 @@ def CreateDataset(opt):
     elif opt.dataset_mode == 'single':
         from data.single_dataset import SingleDataset
         dataset = SingleDataset()
+    elif opt.dataset_mode == 'custom':
+        dataset = Cityscapes(mode='train', opt)
+
+
     else:
         raise ValueError("Dataset [%s] not recognized." % opt.dataset_mode)
 
