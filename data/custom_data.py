@@ -344,7 +344,7 @@ class Cityscapes:
         ids = extract_imgpaths(image_root.format('train'))
         self.train_ds = SegmentationDataset(image_root.format('train'), mask_root.format('train'), ids=ids, img_fmt='_leftImg8bit.png', mask_fmt='_gtFine_labelIds.png')
         self.train_ds.set_transforms(Cityscapes.transforms(rs, None, args.loadSize, args.fineSize))
-        nv_file = join(args.cpbase, 'cityscapes.pickle')
+        nv_file = join(args.ckeckpoint_dir, 'cityscapes.pickle')
         if os.path.exists(nv_file):
             with open(nv_file, 'rb') as nv:
                 self.nv = pickle.load(nv)
